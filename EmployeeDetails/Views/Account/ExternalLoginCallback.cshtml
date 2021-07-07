@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+</head>
+<body>
+   
+    @if (ViewBag.hello != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("welcome @ViewBag.hello");
+            };
+        </script>
+
+    }
+</body>
+</html>
+ 

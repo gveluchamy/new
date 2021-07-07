@@ -1,0 +1,123 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> userManager
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EmployeeDetails</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</head>
+<body>
+
+    @*<style>
+        .button {
+           
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>*@
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light btn-success border-bottom box-shadow mb-md-2">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmployeeDetails</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="true" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Data" asp-action="Index">Index</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+                    <ul class="navbar-nav ml-auto">
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form method="post" asp-action="Logout" asp-controller="Account" asp-route-id="@User.Identity">
+                                    <div class="dropdown">
+
+                                        <a href="" class="fas fa-user-circle" style="font-size:40px; margin-right:0px;" role="button" data-toggle="dropdown"></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+
+                                            <button type="submit" style="width:210px" class="nav-link btn btn-info" ;> @User.Identity.Name</button>
+                                            <br />
+                                            <a asp-controller="Account" asp-action="Login" class="btn btn-warning" ;>SignIn Different Account></a>
+
+                                            <br />
+
+                                            <button type="submit" style="width:200px" class="nav-link btn btn-danger" ;>
+                                                SignOut
+                                            </button>
+                                        </div>
+                                        @*<button type="submit" style="width:auto" class="nav-link btn btn-info">   @User.Identity.Name SignOut  </button>*@
+                                    </div>
+                                </form>
+                                @User.Identity.Name
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="register" class="btn btn-warning"> SignUp</a> &nbsp;
+
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Login" class_1="btn btn-warning" class="fas fa-user-circle" style="font-size:40px" ;></a>
+                            </li>
+                        }
+
+                    </ul>
+
+                </div>
+                @ViewBag.hello
+            </div>
+            <!--<div class="dropdown">-->
+            @*<a  href="" class="fas fa-user-circle" style="font-size:40px; color:royalblue; right:100px;"   id="dropdownMenuButton"aria-haspopup="true" aria-expanded="true"></a>*@
+            <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a asp-action="Logout" asp-controller="Account" class="dropdown-item">@User.Identity.Name Signout </a>
+                <a asp-action="ExternalLogin" asp-controller="Account" class="dropdown-item"> Sign with different Acount </a>-->
+
+            <!--</div>-->
+           
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            Ganapathy
+            &copy; 2020 - EmployeeDetails - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
